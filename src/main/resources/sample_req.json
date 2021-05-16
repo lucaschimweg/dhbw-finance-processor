@@ -1,0 +1,61 @@
+{
+  "dataSourceName": "bigdata",
+  "calculations": {
+    "center1or2": {
+      "type": "union",
+      "sources": [
+        {
+          "type": "filter",
+          "conditions": [
+            {
+              "type": "equals",
+              "field": "cost_center",
+              "value": "1"
+            }
+          ],
+          "source": {
+            "type": "all_transactions"
+          }
+        },
+        {
+          "type": "filter",
+          "conditions": [
+            {
+              "type": "equals",
+              "field": "cost_center",
+              "value": "2"
+            }
+          ],
+          "source": {
+            "type": "all_transactions"
+          }
+        }
+      ]
+    },
+    "center3": {
+      "type": "filter",
+      "conditions": [
+        {
+          "type": "equals",
+          "field": "cost_center",
+          "value": "3"
+        }
+      ],
+      "source": {
+        "type": "all_transactions"
+      }
+    },
+    "sumOfAll": {
+      "type": "sum",
+      "source": {
+        "type": "all_transactions"
+      }
+    },
+    "transactionCount": {
+      "type": "count",
+      "source": {
+        "type": "all_transactions"
+      }
+    }
+  }
+}
