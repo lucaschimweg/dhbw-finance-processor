@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+sourceCompatibility = 1.15
+targetCompatibility = 1.15
+
+group 'net.schimweg.finproc'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+jacoco {
+    toolVersion = "0.8.6"
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.8.6'
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+}
