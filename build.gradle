@@ -9,15 +9,21 @@ targetCompatibility = 1.15
 sourceSets {
     main
 
-    plugins {
+    defaultTransformationsPlugin {
         compileClasspath += sourceSets.main.output
         java {
-            srcDir 'src/plugins/java'
+            srcDir 'src/plugins/defaultTransformations/java'
         }
 
         resources {
-            srcDir 'src/plugins/resources'
+            srcDir 'src/plugins/defaultTransformations/resources'
         }
+    }
+
+
+    test {
+        runtimeClasspath += sourceSets.defaultTransformationsPlugin.output
+        compileClasspath += sourceSets.defaultTransformationsPlugin.output
     }
 }
 
@@ -66,13 +72,11 @@ task buildJar(type: Jar) {
     }
 }
 
-task exportPlugin(type: Jar) {
+task exportDefaultTransformationsJar(type: Jar) {
     destinationDirectory = file("run/plugins/")
-    archiveFileName.set("plugins.jar")
+    archiveFileName.set("defaultTransformations.jar")
 
-    from(sourceSets.plugins.output) {
+    from(sourceSets.defaultTransformationsPlugin.output) {
         include '**/*'
     }
-
-
 }

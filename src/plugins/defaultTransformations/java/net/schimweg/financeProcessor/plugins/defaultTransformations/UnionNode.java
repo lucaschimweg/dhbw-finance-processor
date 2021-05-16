@@ -1,5 +1,6 @@
-package net.schimweg.financeProcessor.ast;
+package net.schimweg.financeProcessor.plugins.defaultTransformations;
 
+import net.schimweg.financeProcessor.ast.TransactionSetNode;
 import net.schimweg.financeProcessor.model.DataContext;
 import net.schimweg.financeProcessor.model.Transaction;
 import net.schimweg.financeProcessor.model.TransactionSet;

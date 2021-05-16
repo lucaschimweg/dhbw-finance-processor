@@ -18,6 +18,7 @@ public class PluginManager {
     }
 
     public void addNodeType(String name, Type type, Function<Object, Node> factory) {
+        System.out.printf("Adding type %s\n", name);
         typeFactory.addType(name, type, factory);
     }
 

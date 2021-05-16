@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PluginLoader {
 
-    public Plugin loadPlugin(URL jarFile) throws PluginLoadException {
+    public LoadedPlugin loadPlugin(URL jarFile) throws PluginLoadException {
         URLClassLoader loader = new URLClassLoader(new URL[] { jarFile });
 
         InputStream manifestStream = loader.getResourceAsStream("main");
@@ -43,10 +43,10 @@ public class PluginLoader {
             throw new PluginLoadException("Main class is not an instance of Plugin");
         }
 
-        return (Plugin) mainObject;
+        return new LoadedPlugin(jarFile.getFile(), (Plugin) mainObject);
     }
 
-    public List<Plugin> loadPlugins(File directory) throws PluginLoadException {
+    public List<LoadedPlugin> loadPlugins(File directory) throws PluginLoadException {
         if (!directory.isDirectory()) {
             throw new PluginLoadException("Not a directory");
         }
@@ -57,14 +57,14 @@ public class PluginLoader {
             throw new PluginLoadException("Could not list plugins in directory");
         }
 
-        List<Plugin> plugins = new ArrayList<>(files.length);
+        List<LoadedPlugin> plugins = new ArrayList<>(files.length);
 
         for (File jar : files) {
             if (jar.isDirectory() || !jar.getName().endsWith(".jar")) {
                 continue;
             }
 
-            Plugin plugin;
+            LoadedPlugin plugin;
             try {
                 plugin = this.loadPlugin(jar.toURI().toURL());
             } catch (MalformedURLException | PluginLoadException e) {

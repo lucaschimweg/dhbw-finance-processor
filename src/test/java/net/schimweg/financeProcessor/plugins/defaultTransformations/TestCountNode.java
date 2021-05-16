@@ -1,10 +1,10 @@
-package net.schimweg.financeProcessor.ast;
+package net.schimweg.financeProcessor.plugins.defaultTransformations;
 
 import net.schimweg.financeProcessor.Common;
 import net.schimweg.financeProcessor.model.Currency;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestCountNode {
 
