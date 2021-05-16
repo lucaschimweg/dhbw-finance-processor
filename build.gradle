@@ -6,6 +6,21 @@ plugins {
 sourceCompatibility = 1.15
 targetCompatibility = 1.15
 
+sourceSets {
+    main
+
+    plugins {
+        compileClasspath += sourceSets.main.output
+        java {
+            srcDir 'src/plugins/java'
+        }
+
+        resources {
+            srcDir 'src/plugins/resources'
+        }
+    }
+}
+
 group 'net.schimweg.finproc'
 version '1.0-SNAPSHOT'
 
@@ -35,4 +50,29 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+}
+
+task buildJar(type: Jar) {
+    destinationDirectory = file("run/")
+
+    from(sourceSets.main.output) {
+        include '**/*'
+    }
+
+    manifest {
+        attributes(
+            'Main-Class': 'net.schimweg.financeProcessor.Main'
+        )
+    }
+}
+
+task exportPlugin(type: Jar) {
+    destinationDirectory = file("run/plugins/")
+    archiveFileName.set("plugins.jar")
+
+    from(sourceSets.plugins.output) {
+        include '**/*'
+    }
+
+
 }

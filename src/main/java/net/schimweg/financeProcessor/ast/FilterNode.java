@@ -2,7 +2,6 @@ package net.schimweg.financeProcessor.ast;
 
 import net.schimweg.financeProcessor.model.DataContext;
 import net.schimweg.financeProcessor.model.Transaction;
-import net.schimweg.financeProcessor.model.TransactionDirection;
 import net.schimweg.financeProcessor.model.TransactionSet;
 
 public class FilterNode implements TransactionSetNode {

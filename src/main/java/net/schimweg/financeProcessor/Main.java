@@ -6,10 +6,17 @@ import net.schimweg.financeProcessor.execution.Executor;
 import net.schimweg.financeProcessor.model.*;
 import net.schimweg.financeProcessor.parser.NodeTypeFactory;
 import net.schimweg.financeProcessor.parser.json.JsonParser;
+import net.schimweg.financeProcessor.plugin.Plugin;
+import net.schimweg.financeProcessor.plugin.PluginLoadException;
+import net.schimweg.financeProcessor.plugin.PluginLoader;
+import net.schimweg.financeProcessor.plugin.PluginManager;
 
-import java.io.FileReader;
+import java.io.File;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main2(String[] args) {
@@ -27,7 +34,7 @@ public class Main {
         System.out.println(tree.execute(dataContext));
     }
 
-    public static void main(String[] args) {
+    public static void main3(String[] args) {
         System.out.println("working");
         var factory = new NodeTypeFactory();
         factory.addType("sum", SumNode.SumNodeConfig.class, o -> new SumNode((SumNode.SumNodeConfig) o));
@@ -73,5 +80,20 @@ public class Main {
 
         System.out.println(result);
 
+    }
+
+    public static void main(String[] args) throws MalformedURLException, PluginLoadException {
+        PluginLoader loader = new PluginLoader();
+        List<Plugin> plugins = loader.loadPlugins(new File("./plugins"));
+
+        PluginManager manager = new PluginManager();
+
+        for (Plugin p : plugins) {
+            try {
+                p.initialize(manager);
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
