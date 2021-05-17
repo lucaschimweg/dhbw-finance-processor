@@ -21,9 +21,24 @@ sourceSets {
     }
 
 
+    jsonPlugin {
+        compileClasspath += sourceSets.main.output
+
+        java {
+            srcDir 'src/plugins/json/java'
+        }
+
+        resources {
+            srcDir 'src/plugins/json/resources'
+        }
+    }
+
+
     test {
         runtimeClasspath += sourceSets.defaultTransformationsPlugin.output
+        runtimeClasspath += sourceSets.jsonPlugin.output
         compileClasspath += sourceSets.defaultTransformationsPlugin.output
+        compileClasspath += sourceSets.jsonPlugin.output
     }
 }
 
@@ -53,7 +68,7 @@ jacocoTestReport {
 }
 
 dependencies {
-    implementation 'com.google.code.gson:gson:2.8.6'
+    jsonPluginImplementation 'com.google.code.gson:gson:2.8.6'
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
 }
@@ -77,6 +92,15 @@ task exportDefaultTransformationsJar(type: Jar) {
     archiveFileName.set("defaultTransformations.jar")
 
     from(sourceSets.defaultTransformationsPlugin.output) {
+        include '**/*'
+    }
+}
+
+task exportJsonJar(type: Jar) {
+    destinationDirectory = file("run/plugins/")
+    archiveFileName.set("json.jar")
+
+    from(sourceSets.jsonPlugin.output) {
         include '**/*'
     }
 }

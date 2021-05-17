@@ -1,4 +1,4 @@
-package net.schimweg.financeProcessor.parser.json;
+package net.schimweg.financeProcessor.plugins.json;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;

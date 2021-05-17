@@ -1,16 +1,8 @@
 package net.schimweg.financeProcessor;
 
-import com.google.gson.Gson;
-import net.schimweg.financeProcessor.ast.*;
-import net.schimweg.financeProcessor.execution.Executor;
-import net.schimweg.financeProcessor.model.*;
-import net.schimweg.financeProcessor.parser.NodeTypeFactory;
-import net.schimweg.financeProcessor.parser.json.JsonParser;
 import net.schimweg.financeProcessor.plugin.*;
 
 import java.io.File;
-import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -78,7 +70,7 @@ public class Main {
 
     public static void main(String[] args) throws PluginLoadException {
         PluginLoader loader = new PluginLoader();
-        List<LoadedPlugin> plugins = loader.loadPlugins(new File("./plugins"));
+        List<LoadedPlugin> plugins = loader.loadPlugins(new File("plugins"));
 
         PluginManager manager = new PluginManager();
 

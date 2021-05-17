@@ -1,4 +1,4 @@
-package net.schimweg.financeProcessor.parser.json;
+package net.schimweg.financeProcessor.plugins.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
