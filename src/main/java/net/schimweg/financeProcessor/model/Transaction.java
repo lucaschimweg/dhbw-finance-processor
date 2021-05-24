@@ -1,6 +1,6 @@
 package net.schimweg.financeProcessor.model;
 
-public class Transaction implements FinanceObject {
+public class Transaction implements MaterializedFinanceObject {
     private final Amount amount;
     private final String subject;
     private final int costCenter;

@@ -1,6 +1,6 @@
 package net.schimweg.financeProcessor.model;
 
-public class Amount implements FinanceObject {
+public class Amount implements MaterializedFinanceObject {
     private final long value;
     private final Currency currency;
 

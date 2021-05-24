@@ -5,13 +5,14 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import net.schimweg.financeProcessor.ast.AstRoot;
 import net.schimweg.financeProcessor.execution.Executor;
+import net.schimweg.financeProcessor.execution.MaterializedResult;
+import net.schimweg.financeProcessor.execution.Materializer;
 import net.schimweg.financeProcessor.execution.Result;
 import net.schimweg.financeProcessor.model.*;
 import net.schimweg.financeProcessor.parser.Parser;
 import net.schimweg.financeProcessor.plugin.Encoder;
 import net.schimweg.financeProcessor.plugin.PluginManager;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -81,7 +82,8 @@ public class Server implements HttpHandler {
                 ex.addContext("data", dataContext);
                 res = ex.execute(root);
             } catch (Exception e) {
-                sendError("Error during execution", 500, exchange);
+                e.printStackTrace();
+                sendError("Error during execution: " + e.getMessage(), 500, exchange);
                 return;
             }
 
@@ -90,10 +92,20 @@ public class Server implements HttpHandler {
                 return;
             }
 
+            MaterializedResult materializedResult;
+            try {
+                Materializer m = new Materializer();
+                materializedResult = m.materialize(res);
+            } catch (Exception e) {
+                e.printStackTrace();
+                sendError("Error during result materialization: " + e.getMessage(), 500, exchange);
+                return;
+            }
+
             ByteArrayOutputStream memoryStream = new ByteArrayOutputStream();
             String encodedContentType;
             try {
-                encodedContentType = encoder.encode(res, memoryStream);
+                encodedContentType = encoder.encode(materializedResult, memoryStream);
             } catch (Exception e) {
                 sendError("Error during response encoding", 500, exchange);
                 return;
