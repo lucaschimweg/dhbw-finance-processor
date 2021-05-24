@@ -7,10 +7,12 @@ import java.util.Map;
 public class MaterializedResult {
     private final Map<String, MaterializedFinanceObject> results;
     private final long executionTime;
+    private final long materializationTime;
 
-    public MaterializedResult(Map<String, MaterializedFinanceObject> results, long executionTime) {
+    public MaterializedResult(Map<String, MaterializedFinanceObject> results, long executionTime, long materializationTime) {
         this.results = results;
         this.executionTime = executionTime;
+        this.materializationTime = materializationTime;
     }
 
     public Map<String, MaterializedFinanceObject> getResults() {

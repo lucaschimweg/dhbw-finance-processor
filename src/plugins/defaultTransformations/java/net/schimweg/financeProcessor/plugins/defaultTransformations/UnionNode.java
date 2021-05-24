@@ -1,6 +1,7 @@
 package net.schimweg.financeProcessor.plugins.defaultTransformations;
 
 import net.schimweg.financeProcessor.ast.TransactionSetNode;
+import net.schimweg.financeProcessor.execution.EvaluationException;
 import net.schimweg.financeProcessor.model.DataContext;
 import net.schimweg.financeProcessor.model.Transaction;
 import net.schimweg.financeProcessor.model.TransactionSet;
@@ -19,12 +20,12 @@ public class UnionNode implements TransactionSetNode {
         }
 
         @Override
-        public Transaction current() {
+        public Transaction current() throws EvaluationException {
             return currentSet.current();
         }
 
         @Override
-        public boolean next() {
+        public boolean next() throws EvaluationException {
             if (currentSet != null && currentSet.next()) {
                 return true;
             }

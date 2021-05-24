@@ -9,11 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Materializer {
-    public Materializer() {
-
-    }
-
-    public MaterializedResult materialize(Result result) {
+    public MaterializedResult materialize(Result result) throws EvaluationException {
+        long startTime = System.currentTimeMillis();
         HashMap<String, MaterializedFinanceObject> materializedObjects = new HashMap<>();
 
         for (Map.Entry<String, FinanceObject> entry : result.getResults().entrySet()) {
@@ -24,11 +21,11 @@ public class Materializer {
             }
         }
 
-        return new MaterializedResult(materializedObjects, result.getExecutionTime());
+        return new MaterializedResult(materializedObjects, result.getExecutionTime(), System.currentTimeMillis() - startTime);
     }
 
 
-    private MaterializedFinanceObject materializeObject(FinanceObject object) {
+    private MaterializedFinanceObject materializeObject(FinanceObject object) throws EvaluationException {
         if (object instanceof TransactionSet) {
             return materializeTransactionSet((TransactionSet) object);
         }
@@ -36,7 +33,7 @@ public class Materializer {
         return null;
     }
 
-    private MaterializedTransactionSet materializeTransactionSet(TransactionSet set) {
+    private MaterializedTransactionSet materializeTransactionSet(TransactionSet set) throws EvaluationException {
         MaterializedTransactionSet mat = new MaterializedTransactionSet();
         while (set.next()) {
             mat.add(set.current());

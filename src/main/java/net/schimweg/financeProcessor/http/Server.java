@@ -4,10 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import net.schimweg.financeProcessor.ast.AstRoot;
-import net.schimweg.financeProcessor.execution.Executor;
-import net.schimweg.financeProcessor.execution.MaterializedResult;
-import net.schimweg.financeProcessor.execution.Materializer;
-import net.schimweg.financeProcessor.execution.Result;
+import net.schimweg.financeProcessor.execution.*;
 import net.schimweg.financeProcessor.model.*;
 import net.schimweg.financeProcessor.parser.Parser;
 import net.schimweg.financeProcessor.plugin.Encoder;
@@ -86,7 +83,7 @@ public class Server implements HttpHandler {
                 Executor ex = new Executor(dataContext);
 
                 res = ex.execute(root);
-            } catch (Exception e) {
+            } catch (EvaluationException e) {
                 e.printStackTrace();
                 sendError("Error during execution: " + e.getMessage(), 500, exchange);
                 return;
@@ -101,7 +98,7 @@ public class Server implements HttpHandler {
             try {
                 Materializer m = new Materializer();
                 materializedResult = m.materialize(res);
-            } catch (Exception e) {
+            } catch (EvaluationException e) {
                 e.printStackTrace();
                 sendError("Error during result materialization: " + e.getMessage(), 500, exchange);
                 return;

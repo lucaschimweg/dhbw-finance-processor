@@ -15,7 +15,7 @@ public class Executor {
         this.dataContext = dataContext;
     }
 
-    public Result execute(AstRoot root) {
+    public Result execute(AstRoot root) throws EvaluationException {
         var startTime = System.currentTimeMillis();
         var results = new HashMap<String, FinanceObject>();
 

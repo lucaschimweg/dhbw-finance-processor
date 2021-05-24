@@ -2,6 +2,7 @@ package net.schimweg.financeProcessor.plugins.defaultTransformations;
 
 import net.schimweg.financeProcessor.ast.AmountNode;
 import net.schimweg.financeProcessor.ast.TransactionSetNode;
+import net.schimweg.financeProcessor.execution.EvaluationException;
 import net.schimweg.financeProcessor.model.Amount;
 import net.schimweg.financeProcessor.model.Currency;
 import net.schimweg.financeProcessor.model.DataContext;
@@ -26,7 +27,7 @@ public class SumNode implements AmountNode {
         this.respectDirection = respectDirection;
     }
 
-    public Amount execute(DataContext context) {
+    public Amount execute(DataContext context) throws EvaluationException {
         long amount = 0;
         var data = source.execute(context);
 
