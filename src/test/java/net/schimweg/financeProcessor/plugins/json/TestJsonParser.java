@@ -1,4 +1,4 @@
-package net.schimweg.financeProcessor.parser.json;
+package net.schimweg.financeProcessor.plugins.json;
 
 import org.junit.jupiter.api.Test;
 

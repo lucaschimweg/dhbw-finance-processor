@@ -1,6 +1,7 @@
 package net.schimweg.financeProcessor.plugins.defaultTransformations;
 
 import net.schimweg.financeProcessor.Common;
+import net.schimweg.financeProcessor.execution.EvaluationException;
 import net.schimweg.financeProcessor.model.Currency;
 import org.junit.jupiter.api.Test;
 
@@ -10,20 +11,19 @@ public class TestCountNode {
 
     @Test
     void testName() {
-
         var config = new CountNode.CountNodeConfig();
-        config.source = new AllTransactionsNode(Common.DefaultDataContextName);
+        config.source = new AllTransactionsNode(Common.MockDataContextName);
         var node = new CountNode(config);
 
         assertEquals("COUNT", node.name());
     }
 
     @Test
-    void testCount0() {
-        var data = Common.getDummyDataContext(0);
+    void testCount0() throws EvaluationException {
+        var data = Common.getMockDataContext(0);
 
         var config = new CountNode.CountNodeConfig();
-        config.source = new AllTransactionsNode(Common.DefaultDataContextName);
+        config.source = new AllTransactionsNode(Common.MockDataContextName);
         var node = new CountNode(config);
 
         var result = node.execute(data);
@@ -33,11 +33,11 @@ public class TestCountNode {
     }
 
     @Test
-    void testCount1() {
-        var data = Common.getDummyDataContext(1);
+    void testCount1() throws EvaluationException {
+        var data = Common.getMockDataContext(1);
 
         var config = new CountNode.CountNodeConfig();
-        config.source = new AllTransactionsNode(Common.DefaultDataContextName);
+        config.source = new AllTransactionsNode(Common.MockDataContextName);
         var node = new CountNode(config);
 
         var result = node.execute(data);
@@ -47,11 +47,11 @@ public class TestCountNode {
     }
 
     @Test
-    void testCount2() {
-        var data = Common.getDummyDataContext(2);
+    void testCount2() throws EvaluationException {
+        var data = Common.getMockDataContext(2);
 
         var config = new CountNode.CountNodeConfig();
-        config.source = new AllTransactionsNode(Common.DefaultDataContextName);
+        config.source = new AllTransactionsNode(Common.MockDataContextName);
         var node = new CountNode(config);
 
         var result = node.execute(data);
@@ -61,11 +61,11 @@ public class TestCountNode {
     }
 
     @Test
-    void testCount10() {
-        var data = Common.getDummyDataContext(10);
+    void testCount10() throws EvaluationException {
+        var data = Common.getMockDataContext(10);
 
         var config = new CountNode.CountNodeConfig();
-        config.source = new AllTransactionsNode(Common.DefaultDataContextName);
+        config.source = new AllTransactionsNode(Common.MockDataContextName);
         var node = new CountNode(config);
 
         var result = node.execute(data);

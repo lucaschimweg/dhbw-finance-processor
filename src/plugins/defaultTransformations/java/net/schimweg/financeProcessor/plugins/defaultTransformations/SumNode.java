@@ -17,6 +17,7 @@ public class SumNode implements AmountNode {
 
     private final TransactionSetNode source;
     private final boolean respectDirection;
+    private Currency currency = Currency.NONE;
 
     public SumNode(SumNodeConfig config) {
         this(config.source, config.respectDirection);
@@ -32,6 +33,13 @@ public class SumNode implements AmountNode {
         var data = source.execute(context);
 
         while (data.next()) {
+            if (currency == Currency.NONE) {
+                currency = data.current().getAmount().getCurrency();
+            } else {
+                if (data.current().getAmount().getCurrency() != currency) {
+                    throw new EvaluationException("Inconsistent currencies");
+                }
+            }
             if (!respectDirection) {
                 amount += data.current().getAmount().getValue();
             } else {
@@ -41,7 +49,7 @@ public class SumNode implements AmountNode {
 
         }
 
-        return new Amount(amount, Currency.EUR);
+        return new Amount(amount, currency);
     }
 
     public String name() {
