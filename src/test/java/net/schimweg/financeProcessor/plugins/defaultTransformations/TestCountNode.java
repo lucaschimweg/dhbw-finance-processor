@@ -12,7 +12,7 @@ public class TestCountNode {
     void testName() {
 
         var config = new CountNode.CountNodeConfig();
-        config.source = new AllTransactionsNode();
+        config.source = new AllTransactionsNode(Common.DefaultDataContextName);
         var node = new CountNode(config);
 
         assertEquals("COUNT", node.name());
@@ -23,7 +23,7 @@ public class TestCountNode {
         var data = Common.getDummyDataContext(0);
 
         var config = new CountNode.CountNodeConfig();
-        config.source = new AllTransactionsNode();
+        config.source = new AllTransactionsNode(Common.DefaultDataContextName);
         var node = new CountNode(config);
 
         var result = node.execute(data);
@@ -37,7 +37,7 @@ public class TestCountNode {
         var data = Common.getDummyDataContext(1);
 
         var config = new CountNode.CountNodeConfig();
-        config.source = new AllTransactionsNode();
+        config.source = new AllTransactionsNode(Common.DefaultDataContextName);
         var node = new CountNode(config);
 
         var result = node.execute(data);
@@ -51,7 +51,7 @@ public class TestCountNode {
         var data = Common.getDummyDataContext(2);
 
         var config = new CountNode.CountNodeConfig();
-        config.source = new AllTransactionsNode();
+        config.source = new AllTransactionsNode(Common.DefaultDataContextName);
         var node = new CountNode(config);
 
         var result = node.execute(data);
@@ -65,7 +65,7 @@ public class TestCountNode {
         var data = Common.getDummyDataContext(10);
 
         var config = new CountNode.CountNodeConfig();
-        config.source = new AllTransactionsNode();
+        config.source = new AllTransactionsNode(Common.DefaultDataContextName);
         var node = new CountNode(config);
 
         var result = node.execute(data);

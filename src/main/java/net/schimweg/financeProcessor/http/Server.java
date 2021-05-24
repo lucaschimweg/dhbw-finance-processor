@@ -18,10 +18,11 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Server implements HttpHandler {
-    private HttpServer server;
-    private PluginManager pluginManager;
+    private final HttpServer server;
+    private final PluginManager pluginManager;
 
     public Server(PluginManager manager) throws IOException {
         this.pluginManager = manager;
@@ -73,13 +74,17 @@ public class Server implements HttpHandler {
 
             Result res;
             try {
-                Executor ex = new Executor();
+
                 var data = Arrays.asList(
                         new Transaction(new Amount(2500, Currency.EUR), "Income", 1, TransactionDirection.INCOMING),
                         new Transaction(new Amount(3000, Currency.EUR), "Spending", 1, TransactionDirection.OUTGOING));
 
-                var dataContext = new DataContext(() -> new ListTransactionSet(data));
-                ex.addContext("data", dataContext);
+                HashMap<String, DataProvider> providers = new HashMap<>();
+                providers.put("data", () -> new ListTransactionSet(data));
+
+                var dataContext = new DataContext(providers);
+                Executor ex = new Executor(dataContext);
+
                 res = ex.execute(root);
             } catch (Exception e) {
                 e.printStackTrace();

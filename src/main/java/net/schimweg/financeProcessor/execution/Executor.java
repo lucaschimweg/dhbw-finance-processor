@@ -9,21 +9,15 @@ import java.util.HashMap;
 
 public class Executor {
 
-    private final HashMap<String, DataContext> rootContexts = new HashMap<>();
+    private final DataContext dataContext;
 
-    public void addContext(String name, DataContext context) {
-        rootContexts.put(name, context);
+    public Executor(DataContext dataContext) {
+        this.dataContext = dataContext;
     }
 
     public Result execute(AstRoot root) {
         var startTime = System.currentTimeMillis();
         var results = new HashMap<String, FinanceObject>();
-
-        var dataContext = rootContexts.get(root.getDataSourceName());
-        if (dataContext == null) {
-            throw new RuntimeException("Unknown data source " + root.getDataSourceName());
-        }
-
 
         for (var entry : root.getCalculations().entrySet()) {
             results.put(entry.getKey(), entry.getValue().execute(dataContext));
