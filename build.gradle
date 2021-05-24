@@ -103,4 +103,8 @@ task exportJsonJar(type: Jar) {
     from(sourceSets.jsonPlugin.output) {
         include '**/*'
     }
+
+    from {
+        configurations.jsonPluginRuntimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }

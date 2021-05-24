@@ -14,7 +14,7 @@ public class Executor {
         rootContexts.put(name, context);
     }
 
-    public Result Execute(AstRoot root) {
+    public Result execute(AstRoot root) {
         var startTime = System.currentTimeMillis();
         var results = new HashMap<String, FinanceObject>();
 

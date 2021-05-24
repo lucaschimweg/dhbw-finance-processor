@@ -6,6 +6,9 @@ import net.schimweg.financeProcessor.ast.*;
 import net.schimweg.financeProcessor.parser.Parser;
 import net.schimweg.financeProcessor.parser.NodeTypeFactory;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 
 public class JsonParser implements Parser {
@@ -14,17 +17,23 @@ public class JsonParser implements Parser {
 
     public JsonParser(NodeTypeFactory typeInformation) {
         this.typeInformation = typeInformation;
-        GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapter(TransactionNode.class, new NodeDeserializer<>(typeInformation));
-        builder.registerTypeAdapter(TransactionSetNode.class, new NodeDeserializer<>(typeInformation));
-        builder.registerTypeAdapter(AmountNode.class, new NodeDeserializer<>(typeInformation));
-        builder.registerTypeAdapter(Node.class, new NodeDeserializer<>(typeInformation));
+        try {
+            GsonBuilder builder = new GsonBuilder();
+            builder.registerTypeAdapter(TransactionNode.class, new NodeDeserializer<>(typeInformation));
+            builder.registerTypeAdapter(TransactionSetNode.class, new NodeDeserializer<>(typeInformation));
+            builder.registerTypeAdapter(AmountNode.class, new NodeDeserializer<>(typeInformation));
+            builder.registerTypeAdapter(Node.class, new NodeDeserializer<>(typeInformation));
 
-        gson = builder.create();
+            gson = builder.create();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public AstRoot parseTree(Reader inputStream) {
-        return gson.fromJson(inputStream, AstRoot.class);
+    public AstRoot parseTree(InputStream inputStream) throws IOException {
+        try (Reader reader = new InputStreamReader(inputStream)) {
+            return gson.fromJson(reader, AstRoot.class);
+        }
     }
 }
