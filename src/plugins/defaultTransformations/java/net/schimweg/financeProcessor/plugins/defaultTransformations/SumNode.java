@@ -51,8 +51,4 @@ public class SumNode implements AmountNode {
 
         return new Amount(amount, currency);
     }
-
-    public String name() {
-        return "SUM";
-    }
 }

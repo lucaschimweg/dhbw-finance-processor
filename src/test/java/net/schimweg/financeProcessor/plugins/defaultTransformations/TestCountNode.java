@@ -10,15 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestCountNode {
 
     @Test
-    void testName() {
-        var config = new CountNode.CountNodeConfig();
-        config.source = new AllTransactionsNode(Common.MockDataContextName);
-        var node = new CountNode(config);
-
-        assertEquals("COUNT", node.name());
-    }
-
-    @Test
     void testCount0() throws EvaluationException {
         var data = Common.getMockDataContext(0);
 

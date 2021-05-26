@@ -21,9 +21,9 @@ public class Matcher {
         operators = new HashMap<>();
         operators.put("equals", Object::equals);
         operators.put("smaller", asNumericFunc((x, y) -> x < y));
-        operators.put("smaller_equal", asNumericFunc((x, y) -> x <= y));
+        operators.put("smaller_equals", asNumericFunc((x, y) -> x <= y));
         operators.put("larger", asNumericFunc((x, y) -> x > y));
-        operators.put("larger_equal", asNumericFunc((x, y) -> x >= y));
+        operators.put("larger_equals", asNumericFunc((x, y) -> x >= y));
     }
 
     private static Operator<Object, Object> asNumericFunc(Operator<Long, Long> function) {

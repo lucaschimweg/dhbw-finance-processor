@@ -60,6 +60,18 @@ jacoco {
 
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
+    getAdditionalSourceDirs().setFrom(
+            files(sourceSets.main.allSource.srcDirs),
+            files(sourceSets.jsonPlugin.allSource.srcDirs),
+            files(sourceSets.defaultTransformationsPlugin.allSource.srcDirs)
+    )
+
+    getAdditionalClassDirs().setFrom(
+            files(sourceSets.main.output),
+            files(sourceSets.jsonPlugin.output),
+            files(sourceSets.defaultTransformationsPlugin.output)
+    )
+
     reports {
         xml.enabled false
         csv.enabled false

@@ -12,14 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestSumNode {
-    @Test
-    void testName() {
-        var config = new SumNode.SumNodeConfig();
-        config.source = new AllTransactionsNode(Common.MockDataContextName);
-        var node = new SumNode(config);
-
-        assertEquals("SUM", node.name());
-    }
 
     @Test
     void testSum0() throws EvaluationException {
@@ -133,6 +125,6 @@ public class TestSumNode {
 
         assertThrows(EvaluationException.class, () -> {
             node.execute(data);
-        }, "Inconsistent currencies");
+        });
     }
 }

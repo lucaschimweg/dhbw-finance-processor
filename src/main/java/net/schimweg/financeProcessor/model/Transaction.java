@@ -3,10 +3,10 @@ package net.schimweg.financeProcessor.model;
 public class Transaction implements MaterializedFinanceObject {
     private final Amount amount;
     private final String subject;
-    private final int costCenter;
+    private final long costCenter;
     private final TransactionDirection direction;
 
-    public Transaction(Amount amount, String subject, int costCenter, TransactionDirection direction) {
+    public Transaction(Amount amount, String subject, long costCenter, TransactionDirection direction) {
         this.amount = amount;
         this.subject = subject;
         this.costCenter = costCenter;
@@ -21,7 +21,7 @@ public class Transaction implements MaterializedFinanceObject {
         return subject;
     }
 
-    public int getCostCenter() {
+    public long getCostCenter() {
         return costCenter;
     }
 
