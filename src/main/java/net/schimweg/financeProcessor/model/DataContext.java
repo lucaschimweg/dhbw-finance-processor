@@ -1,11 +1,12 @@
 package net.schimweg.financeProcessor.model;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class DataContext {
-    private final HashMap<String, DataProvider> dataProviders;
+    private final Map<String, DataProvider> dataProviders;
 
-    public DataContext(HashMap<String, DataProvider> dataProvider) {
+    public DataContext(Map<String, DataProvider> dataProvider) {
         this.dataProviders = dataProvider;
     }
 

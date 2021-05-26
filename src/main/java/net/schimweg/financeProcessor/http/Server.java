@@ -4,8 +4,8 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import net.schimweg.financeProcessor.ast.AstRoot;
+import net.schimweg.financeProcessor.config.Config;
 import net.schimweg.financeProcessor.execution.*;
-import net.schimweg.financeProcessor.model.*;
 import net.schimweg.financeProcessor.parser.Parser;
 import net.schimweg.financeProcessor.plugin.Encoder;
 import net.schimweg.financeProcessor.plugin.PluginManager;
@@ -13,17 +13,19 @@ import net.schimweg.financeProcessor.plugin.PluginManager;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.nio.charset.StandardCharsets;;
 
 public class Server implements HttpHandler {
     private final HttpServer server;
     private final PluginManager pluginManager;
+    private final Config config;
+    private final Executor executor;
 
-    public Server(PluginManager manager) throws IOException {
+    public Server(Config config, PluginManager manager, Executor executor) throws IOException {
         this.pluginManager = manager;
-        server = HttpServer.create(new InetSocketAddress("localhost", 8080), 256);
+        this.config = config;
+        this.executor = executor;
+        server = HttpServer.create(new InetSocketAddress("localhost", config.port), 256);
         server.createContext("/", this);
     }
 
@@ -71,18 +73,7 @@ public class Server implements HttpHandler {
 
             Result res;
             try {
-
-                var data = Arrays.asList(
-                        new Transaction(new Amount(2500, Currency.EUR), "Income", 1, TransactionDirection.INCOMING),
-                        new Transaction(new Amount(3000, Currency.EUR), "Spending", 1, TransactionDirection.OUTGOING));
-
-                HashMap<String, DataProvider> providers = new HashMap<>();
-                providers.put("data", () -> new ListTransactionSet(data));
-
-                var dataContext = new DataContext(providers);
-                Executor ex = new Executor(dataContext);
-
-                res = ex.execute(root);
+                res = executor.execute(root);
             } catch (EvaluationException e) {
                 e.printStackTrace();
                 sendError("Error during execution: " + e.getMessage(), 500, exchange);

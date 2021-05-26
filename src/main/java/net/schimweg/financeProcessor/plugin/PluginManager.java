@@ -1,11 +1,17 @@
 package net.schimweg.financeProcessor.plugin;
 
 import net.schimweg.financeProcessor.ast.Node;
+import net.schimweg.financeProcessor.config.DataSourceConfig;
+import net.schimweg.financeProcessor.model.DataProvider;
 import net.schimweg.financeProcessor.parser.NodeTypeFactory;
 import net.schimweg.financeProcessor.parser.Parser;
 
+import javax.xml.datatype.DatatypeFactory;
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -13,6 +19,7 @@ public class PluginManager {
     private final NodeTypeFactory typeFactory = new NodeTypeFactory();
     private final HashMap<String, Function<NodeTypeFactory, Parser>> parserFactories = new HashMap<>();
     private final HashMap<String, Supplier<Encoder>> encoderFactories = new HashMap<>();
+    private final DataSourceManager dataSourceManager = new DataSourceManager();
 
     public PluginManager() {
 
@@ -60,5 +67,23 @@ public class PluginManager {
         encoderFactories.put(contentType, factory);
     }
 
+    public void addDataProviderType(String name, DataProviderFactory factory) {
+        dataSourceManager.addDataProviderType(name, factory);
+    }
 
+    public Map<String, DataProvider> initializeDataProviders(Map<String, DataSourceConfig> config) throws PluginLoadException {
+        return dataSourceManager.initializeDataProviders(config);
+    }
+
+    public void initializePlugins(List<LoadedPlugin> plugins) {
+        for (LoadedPlugin p : plugins) {
+            System.out.printf("Initializing plugin %s\n", p.getName());
+            try {
+                p.getPlugin().initialize(this);
+            } catch (RuntimeException e) {
+                PluginLoadException pl = new PluginLoadException(String.format("Error initializing plugin %s", p.getName()), e);
+                pl.printStackTrace();
+            }
+        }
+    }
 }

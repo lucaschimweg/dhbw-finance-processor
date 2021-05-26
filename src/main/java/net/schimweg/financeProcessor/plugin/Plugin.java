@@ -1,5 +1,5 @@
 package net.schimweg.financeProcessor.plugin;
 
 public interface Plugin {
-    public void initialize(PluginManager pluginManager);
+    void initialize(PluginManager pluginManager);
 }

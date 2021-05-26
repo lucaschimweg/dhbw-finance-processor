@@ -68,6 +68,7 @@ jacocoTestReport {
 }
 
 dependencies {
+    implementation group: 'org.yaml', name: 'snakeyaml', version: '1.28'
     jsonPluginImplementation 'com.google.code.gson:gson:2.8.6'
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
