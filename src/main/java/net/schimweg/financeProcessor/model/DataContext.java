@@ -1,6 +1,5 @@
 package net.schimweg.financeProcessor.model;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class DataContext {

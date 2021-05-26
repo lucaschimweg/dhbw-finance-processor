@@ -3,7 +3,6 @@ package net.schimweg.financeProcessor.execution;
 import net.schimweg.financeProcessor.ast.AstRoot;
 import net.schimweg.financeProcessor.model.DataContext;
 import net.schimweg.financeProcessor.model.FinanceObject;
-import net.schimweg.financeProcessor.model.MaterializedTransactionSet;
 
 import java.util.HashMap;
 

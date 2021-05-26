@@ -6,8 +6,6 @@ import net.schimweg.financeProcessor.model.DataProvider;
 import net.schimweg.financeProcessor.parser.NodeTypeFactory;
 import net.schimweg.financeProcessor.parser.Parser;
 
-import javax.xml.datatype.DatatypeFactory;
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;

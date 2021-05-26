@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Materializer {
+
     public MaterializedResult materialize(Result result) throws EvaluationException {
         long startTime = System.currentTimeMillis();
         HashMap<String, MaterializedFinanceObject> materializedObjects = new HashMap<>();
