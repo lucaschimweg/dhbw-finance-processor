@@ -63,9 +63,4 @@ public class UnionNode implements TransactionSetNode {
     public TransactionSet execute(DataContext context) {
         return new UnionTransactionSet(sources, context);
     }
-
-    @Override
-    public String name() {
-        return null;
-    }
 }

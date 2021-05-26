@@ -30,9 +30,4 @@ public class AllTransactionsNode implements TransactionSetNode {
         }
 
     }
-
-    @Override
-    public String name() {
-        return "ALL";
-    }
 }

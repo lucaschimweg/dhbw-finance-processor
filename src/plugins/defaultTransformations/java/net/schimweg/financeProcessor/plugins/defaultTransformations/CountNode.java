@@ -24,11 +24,6 @@ public class CountNode implements AmountNode {
     }
 
     @Override
-    public String name() {
-        return "COUNT";
-    }
-
-    @Override
     public Amount execute(DataContext context) throws EvaluationException {
         var data = source.execute(context);
         long count = 0;

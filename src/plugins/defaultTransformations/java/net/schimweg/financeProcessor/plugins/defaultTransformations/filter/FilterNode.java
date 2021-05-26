@@ -57,9 +57,4 @@ public class FilterNode implements TransactionSetNode {
         }
         return new FilteredTransactionSet(source.execute(context), matcher);
     }
-
-    @Override
-    public String name() {
-        return "FILTER";
-    }
 }
