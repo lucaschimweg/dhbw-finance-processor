@@ -4,7 +4,6 @@ import net.schimweg.financeProcessor.ast.AmountNode;
 import net.schimweg.financeProcessor.ast.TransactionSetNode;
 import net.schimweg.financeProcessor.execution.EvaluationException;
 import net.schimweg.financeProcessor.model.Amount;
-import net.schimweg.financeProcessor.model.Currency;
 import net.schimweg.financeProcessor.model.DataContext;
 
 public class CountNode implements AmountNode {
@@ -32,6 +31,6 @@ public class CountNode implements AmountNode {
             ++count;
         }
 
-        return new Amount(count, Currency.NONE);
+        return new Amount(count, "");
     }
 }

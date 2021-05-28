@@ -3,8 +3,8 @@ package net.schimweg.financeProcessor.plugins.json;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.schimweg.financeProcessor.ast.*;
-import net.schimweg.financeProcessor.parser.NodeTypeFactory;
-import net.schimweg.financeProcessor.parser.Parser;
+import net.schimweg.financeProcessor.plugin.NodeTypeFactory;
+import net.schimweg.financeProcessor.plugin.Parser;
 
 import java.io.IOException;
 import java.io.InputStream;

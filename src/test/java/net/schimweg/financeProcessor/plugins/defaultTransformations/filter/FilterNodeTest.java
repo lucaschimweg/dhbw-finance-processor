@@ -3,7 +3,6 @@ package net.schimweg.financeProcessor.plugins.defaultTransformations.filter;
 import net.schimweg.financeProcessor.Common;
 import net.schimweg.financeProcessor.execution.EvaluationException;
 import net.schimweg.financeProcessor.model.Amount;
-import net.schimweg.financeProcessor.model.Currency;
 import net.schimweg.financeProcessor.model.Transaction;
 import net.schimweg.financeProcessor.model.TransactionDirection;
 import net.schimweg.financeProcessor.plugins.defaultTransformations.AllTransactionsNode;
@@ -11,13 +10,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestFilterNode {
+public class FilterNodeTest {
     @Test
     void testFilterNode() throws EvaluationException {
         var data = Common.getMockDataContext(
-                new Transaction(new Amount(2500, Currency.EUR), "Test 1", 1, TransactionDirection.OUTGOING),
-                new Transaction(new Amount(3000, Currency.EUR), "Test 2", 1, TransactionDirection.OUTGOING),
-                new Transaction(new Amount(3500, Currency.EUR), "Test 3", 1, TransactionDirection.INCOMING)
+                new Transaction(new Amount(2500, "EUR"), "Test 1", 1, TransactionDirection.OUTGOING),
+                new Transaction(new Amount(3000, "EUR"), "Test 2", 1, TransactionDirection.OUTGOING),
+                new Transaction(new Amount(3500, "EUR"), "Test 3", 1, TransactionDirection.INCOMING)
         );
 
         var config = new FilterNodeConfig();
@@ -39,9 +38,9 @@ public class TestFilterNode {
     }
 
     @Test
-    void testFilterNodeErrors() throws EvaluationException {
+    void testFilterNodeErrors() {
         var data = Common.getMockDataContext(
-                new Transaction(new Amount(2500, Currency.EUR), "Test 1", 1, TransactionDirection.OUTGOING)
+                new Transaction(new Amount(2500, "EUR"), "Test 1", 1, TransactionDirection.OUTGOING)
         );
 
         var config = new FilterNodeConfig();

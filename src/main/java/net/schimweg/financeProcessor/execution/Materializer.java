@@ -8,8 +8,17 @@ import net.schimweg.financeProcessor.model.TransactionSet;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The Materializer is used to materialize Result objects into MaterializedResult objects
+ */
 public class Materializer {
 
+    /**
+     * Materialize a given Result object
+     * @param result The Result object to materialize
+     * @return The materialized MaterializedResult object
+     * @throws EvaluationException When any fetching from a TransactionSet throws an EvaluationException, it is passed on
+     */
     public MaterializedResult materialize(Result result) throws EvaluationException {
         long startTime = System.currentTimeMillis();
         HashMap<String, MaterializedFinanceObject> materializedObjects = new HashMap<>();

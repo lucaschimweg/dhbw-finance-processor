@@ -121,3 +121,8 @@ task exportJsonJar(type: Jar) {
         configurations.jsonPluginRuntimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
+
+task generateJavadocs(type: Javadoc) {
+    source = sourceSets.main.java.srcDirs
+    classpath = sourceSets.main.runtimeClasspath
+}

@@ -15,24 +15,35 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The application's entry point
+ */
 public class Main {
-    public static void main(String[] args) throws PluginLoadException, FileNotFoundException {
-        Config config = new ConfigLoader().loadConfig(new File("config.yml"));
-
-        PluginLoader loader = new PluginLoader();
-        List<LoadedPlugin> plugins = loader.loadPlugins(new File("plugins"));
-
-        PluginManager manager = new PluginManager();
-        manager.initializePlugins(plugins);
-
-        var dataProviders = manager.initializeDataProviders(config.dataSources);
-
-        Executor executor = new Executor(new DataContext(dataProviders));
-
+    /**
+     * The applications main function
+     * @param args Passed Command-Line Arguments
+     */
+    public static void main(String[] args) {
         try {
-            Server s = new Server(config, manager, executor);
-            s.start();
-        } catch (IOException e) {
+            Config config = new ConfigLoader().loadConfig(new File("config.yml"));
+
+            PluginLoader loader = new PluginLoader();
+            List<LoadedPlugin> plugins = loader.loadPlugins(new File("plugins"));
+
+            PluginManager manager = new PluginManager();
+            manager.initializePlugins(plugins);
+
+            var dataProviders = manager.initializeDataProviders(config.dataSources);
+
+            Executor executor = new Executor(new DataContext(dataProviders));
+
+            try {
+                Server s = new Server(config, manager, executor);
+                s.start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch(Exception e) {
             e.printStackTrace();
         }
     }

@@ -45,7 +45,7 @@ public class FilterNode implements TransactionSetNode {
             // Precompile matcher
             this.matcher = new Matcher(config.conditions);
         } catch (EvaluationException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             this.matcherException = e;
         }
     }

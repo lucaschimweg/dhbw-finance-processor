@@ -5,7 +5,7 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import net.schimweg.financeProcessor.ast.Node;
-import net.schimweg.financeProcessor.parser.NodeTypeFactory;
+import net.schimweg.financeProcessor.plugin.NodeTypeFactory;
 
 import java.lang.reflect.Type;
 

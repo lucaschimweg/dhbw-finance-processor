@@ -7,8 +7,18 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Type responsible for loading Plugins from a directory
+ */
 public class PluginLoader {
 
+    /**
+     * Loads a plugin from a single JAR-File. The JAR-File has to contain a resource called `main`, containing
+     * only the name of the Plugin's main type, which implements the Plugin interface
+     * @param jarFile The URL of the file to load
+     * @return The LoadedPlugin created from the JAR-File
+     * @throws PluginLoadException Thrown if anything goes wrong during the load process
+     */
     public LoadedPlugin loadPlugin(URL jarFile) throws PluginLoadException {
         URLClassLoader loader = new URLClassLoader(new URL[] { jarFile });
 
@@ -46,6 +56,13 @@ public class PluginLoader {
         return new LoadedPlugin(jarFile.getFile(), (Plugin) mainObject);
     }
 
+    /**
+     * Tries to load all .jar files in the specified dictionary as plugins. Subdirectories are ignored. Non-JAR files
+     * are also ignored. Plugins that cause an exception when trying to be loaded are ignored.
+     * @param directory The directory to load Plugins from
+     * @return A list of successfully loaded plugins
+     * @throws PluginLoadException Thrown if the specified File is not a directory or the access to it failed
+     */
     public List<LoadedPlugin> loadPlugins(File directory) throws PluginLoadException {
         if (!directory.isDirectory()) {
             throw new PluginLoadException("Not a directory");

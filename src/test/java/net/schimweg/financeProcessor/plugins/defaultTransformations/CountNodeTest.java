@@ -2,12 +2,11 @@ package net.schimweg.financeProcessor.plugins.defaultTransformations;
 
 import net.schimweg.financeProcessor.Common;
 import net.schimweg.financeProcessor.execution.EvaluationException;
-import net.schimweg.financeProcessor.model.Currency;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestCountNode {
+public class CountNodeTest {
 
     @Test
     void testCount0() throws EvaluationException {
@@ -20,7 +19,7 @@ public class TestCountNode {
         var result = node.execute(data);
 
         assertEquals(0, result.getValue());
-        assertEquals(result.getCurrency(), Currency.NONE);
+        assertEquals(result.getCurrency(), "");
     }
 
     @Test
@@ -34,7 +33,7 @@ public class TestCountNode {
         var result = node.execute(data);
 
         assertEquals(1, result.getValue());
-        assertEquals(result.getCurrency(), Currency.NONE);
+        assertEquals(result.getCurrency(), "");
     }
 
     @Test
@@ -48,7 +47,7 @@ public class TestCountNode {
         var result = node.execute(data);
 
         assertEquals(2, result.getValue());
-        assertEquals(result.getCurrency(), Currency.NONE);
+        assertEquals(result.getCurrency(), "");
     }
 
     @Test
@@ -62,6 +61,6 @@ public class TestCountNode {
         var result = node.execute(data);
 
         assertEquals(10, result.getValue());
-        assertEquals(result.getCurrency(), Currency.NONE);
+        assertEquals(result.getCurrency(), "");
     }
 }
