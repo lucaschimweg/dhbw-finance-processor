@@ -14,9 +14,9 @@ public class FilterNodeTest {
     @Test
     void testFilterNode() throws EvaluationException {
         var data = Common.getMockDataContext(
-                new Transaction(new Amount(2500, "EUR"), "Test 1", 1, TransactionDirection.OUTGOING),
-                new Transaction(new Amount(3000, "EUR"), "Test 2", 1, TransactionDirection.OUTGOING),
-                new Transaction(new Amount(3500, "EUR"), "Test 3", 1, TransactionDirection.INCOMING)
+                new Transaction(id, new Amount(2500, "EUR"), "Test 1", 1, TransactionDirection.OUTGOING),
+                new Transaction(id, new Amount(3000, "EUR"), "Test 2", 1, TransactionDirection.OUTGOING),
+                new Transaction(id, new Amount(3500, "EUR"), "Test 3", 1, TransactionDirection.INCOMING)
         );
 
         var config = new FilterNodeConfig();
@@ -40,7 +40,7 @@ public class FilterNodeTest {
     @Test
     void testFilterNodeErrors() {
         var data = Common.getMockDataContext(
-                new Transaction(new Amount(2500, "EUR"), "Test 1", 1, TransactionDirection.OUTGOING)
+                new Transaction(id, new Amount(2500, "EUR"), "Test 1", 1, TransactionDirection.OUTGOING)
         );
 
         var config = new FilterNodeConfig();

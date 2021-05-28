@@ -29,7 +29,7 @@ public class SumNodeTest {
     @Test
     void testSum1() throws EvaluationException {
         var data = Common.getMockDataContext(
-                new Transaction(new Amount(2500, "EUR"), "Test", 1, TransactionDirection.INCOMING)
+                new Transaction(id, new Amount(2500, "EUR"), "Test", 1, TransactionDirection.INCOMING)
         );
 
         var config = new SumNode.SumNodeConfig();
@@ -45,8 +45,8 @@ public class SumNodeTest {
     @Test
     void testSum2() throws EvaluationException {
         var data = Common.getMockDataContext(
-                new Transaction(new Amount(2500, "USD"), "Test", 1, TransactionDirection.INCOMING),
-                new Transaction(new Amount(5000, "USD"), "Test", 1, TransactionDirection.INCOMING)
+                new Transaction(id, new Amount(2500, "USD"), "Test", 1, TransactionDirection.INCOMING),
+                new Transaction(id, new Amount(5000, "USD"), "Test", 1, TransactionDirection.INCOMING)
         );
 
         var config = new SumNode.SumNodeConfig();
@@ -62,8 +62,8 @@ public class SumNodeTest {
     @Test
     void testSum3() throws EvaluationException {
         var data = Common.getMockDataContext(
-                new Transaction(new Amount(2500, "USD"), "Test", 1, TransactionDirection.INCOMING),
-                new Transaction(new Amount(5000, "USD"), "Test", 1, TransactionDirection.OUTGOING)
+                new Transaction(id, new Amount(2500, "USD"), "Test", 1, TransactionDirection.INCOMING),
+                new Transaction(id, new Amount(5000, "USD"), "Test", 1, TransactionDirection.OUTGOING)
         );
 
         var config = new SumNode.SumNodeConfig();
@@ -79,7 +79,7 @@ public class SumNodeTest {
     @Test
     void testSum1NoRespectDirection() throws EvaluationException {
         var data = Common.getMockDataContext(
-                new Transaction(new Amount(2500, "EUR"), "Test", 1, TransactionDirection.OUTGOING)
+                new Transaction(id, new Amount(2500, "EUR"), "Test", 1, TransactionDirection.OUTGOING)
         );
 
         var config = new SumNode.SumNodeConfig();
@@ -96,8 +96,8 @@ public class SumNodeTest {
     @Test
     void testSum2NoRespectDirection() throws EvaluationException {
         var data = Common.getMockDataContext(
-                new Transaction(new Amount(2500, "EUR"), "Test", 1, TransactionDirection.OUTGOING),
-                new Transaction(new Amount(3000, "EUR"), "Test", 1, TransactionDirection.INCOMING)
+                new Transaction(id, new Amount(2500, "EUR"), "Test", 1, TransactionDirection.OUTGOING),
+                new Transaction(id, new Amount(3000, "EUR"), "Test", 1, TransactionDirection.INCOMING)
         );
 
         var config = new SumNode.SumNodeConfig();
@@ -114,8 +114,8 @@ public class SumNodeTest {
     @Test
     void testSumException() {
         var data = Common.getMockDataContext(
-                new Transaction(new Amount(2500, "EUR"), "Test", 1, TransactionDirection.OUTGOING),
-                new Transaction(new Amount(3000, "USD"), "Test", 1, TransactionDirection.INCOMING)
+                new Transaction(id, new Amount(2500, "EUR"), "Test", 1, TransactionDirection.OUTGOING),
+                new Transaction(id, new Amount(3000, "USD"), "Test", 1, TransactionDirection.INCOMING)
         );
 
         var config = new SumNode.SumNodeConfig();

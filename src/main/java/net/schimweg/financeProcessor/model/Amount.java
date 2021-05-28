@@ -1,9 +1,11 @@
 package net.schimweg.financeProcessor.model;
 
+import java.util.Objects;
+
 /**
  * Represents an Amount, containing a value and a currency
  */
-public class Amount implements MaterializedFinanceObject {
+public final class Amount implements MaterializedFinanceObject {
     private final long value;
     private final String currency;
 
@@ -37,5 +39,18 @@ public class Amount implements MaterializedFinanceObject {
                 "value=" + value +
                 ", currency=" + currency +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Amount amount = (Amount) o;
+        return value == amount.value && Objects.equals(currency, amount.currency);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, currency);
     }
 }

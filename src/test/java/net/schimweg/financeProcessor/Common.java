@@ -10,7 +10,7 @@ public class Common {
     public static final String MockDataContextName = "data";
 
     public static DataContext getMockDataContext(int nTransactions) {
-        var transaction = new Transaction(new Amount(1, "EUR"), "subject", 0, TransactionDirection.INCOMING);
+        var transaction = new Transaction(id, new Amount(1, "EUR"), "subject", 0, TransactionDirection.INCOMING);
         var transactionList = new ArrayList<Transaction>(nTransactions);
 
         for (int i = 0; i < nTransactions; ++i) {

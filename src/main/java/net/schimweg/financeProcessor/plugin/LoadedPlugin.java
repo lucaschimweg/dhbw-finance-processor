@@ -1,9 +1,11 @@
 package net.schimweg.financeProcessor.plugin;
 
+import java.util.Objects;
+
 /**
  * Represents a named plugin already loaded into memory
  */
-public class LoadedPlugin {
+public final class LoadedPlugin {
     private final String name;
     private final Plugin plugin;
 
@@ -29,5 +31,18 @@ public class LoadedPlugin {
      */
     public Plugin getPlugin() {
         return plugin;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LoadedPlugin that = (LoadedPlugin) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
