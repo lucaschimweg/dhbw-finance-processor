@@ -15,4 +15,9 @@ public class Config {
      * The configured data sources
      */
     public Map<String, DataSourceConfig> dataSources;
+
+    /**
+     * The default encoder type to use when not Accept Header is given.
+     */
+    public String defaultEncoderType;
 }

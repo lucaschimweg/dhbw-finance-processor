@@ -93,6 +93,10 @@ task buildJar(type: Jar) {
         include '**/*'
     }
 
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
     manifest {
         attributes(
             'Main-Class': 'net.schimweg.financeProcessor.Main'

@@ -22,6 +22,7 @@ public class Server implements HttpHandler {
     private final HttpServer server;
     private final PluginManager pluginManager;
     private final Executor executor;
+    private final Config config;
 
     /**
      * Create a new Server object
@@ -33,6 +34,7 @@ public class Server implements HttpHandler {
     public Server(Config config, PluginManager manager, Executor executor) throws IOException {
         this.pluginManager = manager;
         this.executor = executor;
+        this.config = config;
         server = HttpServer.create(new InetSocketAddress("localhost", config.port), 256);
         server.createContext("/", this);
     }
@@ -73,8 +75,8 @@ public class Server implements HttpHandler {
 
             Encoder encoder;
             String accept = exchange.getRequestHeaders().getFirst("Accept");
-            if (accept == null) {
-                encoder = pluginManager.getDefaultEncoder();
+            if (accept == null || accept.equals("*/*")) {
+                encoder = pluginManager.getEncoderFor(config.defaultEncoderType);
             } else {
                 encoder = pluginManager.getEncoderFor(accept);
             }

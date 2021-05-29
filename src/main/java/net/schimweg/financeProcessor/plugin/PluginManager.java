@@ -54,16 +54,6 @@ public class PluginManager {
     }
 
     /**
-     * @return Returns the default encoder to use if no encoder was specified in a request
-     */
-    public Encoder getDefaultEncoder() {
-        if (encoderFactories.size() == 0) {
-            return null;
-        }
-        return encoderFactories.values().stream().findFirst().get().get();
-    }
-
-    /**
      * To be called by plugins. Adds a new node type to the platform
      * @param name The identifier of the new node type
      * @param type The configuration type for the new node type
