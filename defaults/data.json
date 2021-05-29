@@ -1,0 +1,362 @@
+[
+  {
+    "id": 0,
+    "amount": {
+      "value": 800000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Salary",
+    "cost_center": 1
+  },
+  {
+    "id": 1,
+    "amount": {
+      "value": 1000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Mc Donald's",
+    "cost_center": 2
+  },
+  {
+    "id": 2,
+    "amount": {
+      "value": 50000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Refueling",
+    "cost_center": 3
+  },
+  {
+    "id": 3,
+    "amount": {
+      "value": 20000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Birthday Present",
+    "cost_center": 25
+  },
+  {
+    "id": 4,
+    "amount": {
+      "value": 800000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Salary",
+    "cost_center": 1
+  },
+  {
+    "id": 5,
+    "amount": {
+      "value": 1000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Mc Donald's",
+    "cost_center": 2
+  },
+  {
+    "id": 6,
+    "amount": {
+      "value": 50000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Refueling",
+    "cost_center": 3
+  },
+  {
+    "id": 7,
+    "amount": {
+      "value": 20000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Birthday Present",
+    "cost_center": 25
+  },
+  {
+    "id": 8,
+    "amount": {
+      "value": 800000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Salary",
+    "cost_center": 1
+  },
+  {
+    "id": 9,
+    "amount": {
+      "value": 1000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Mc Donald's",
+    "cost_center": 2
+  },
+  {
+    "id": 10,
+    "amount": {
+      "value": 50000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Refueling",
+    "cost_center": 3
+  },
+  {
+    "id": 11,
+    "amount": {
+      "value": 20000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Birthday Present",
+    "cost_center": 25
+  },
+  {
+    "id": 12,
+    "amount": {
+      "value": 800000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Salary",
+    "cost_center": 1
+  },
+  {
+    "id": 13,
+    "amount": {
+      "value": 1000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Mc Donald's",
+    "cost_center": 2
+  },
+  {
+    "id": 14,
+    "amount": {
+      "value": 50000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Refueling",
+    "cost_center": 3
+  },
+  {
+    "id": 15,
+    "amount": {
+      "value": 20000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Birthday Present",
+    "cost_center": 25
+  },
+  {
+    "id": 16,
+    "amount": {
+      "value": 800000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Salary",
+    "cost_center": 1
+  },
+  {
+    "id": 17,
+    "amount": {
+      "value": 1000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Mc Donald's",
+    "cost_center": 2
+  },
+  {
+    "id": 18,
+    "amount": {
+      "value": 50000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Refueling",
+    "cost_center": 3
+  },
+  {
+    "id": 19,
+    "amount": {
+      "value": 20000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Birthday Present",
+    "cost_center": 25
+  },
+  {
+    "id": 20,
+    "amount": {
+      "value": 800000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Salary",
+    "cost_center": 1
+  },
+  {
+    "id": 21,
+    "amount": {
+      "value": 1000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Mc Donald's",
+    "cost_center": 2
+  },
+  {
+    "id": 22,
+    "amount": {
+      "value": 50000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Refueling",
+    "cost_center": 3
+  },
+  {
+    "id": 23,
+    "amount": {
+      "value": 20000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Birthday Present",
+    "cost_center": 25
+  },
+  {
+    "id": 24,
+    "amount": {
+      "value": 800000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Salary",
+    "cost_center": 1
+  },
+  {
+    "id": 25,
+    "amount": {
+      "value": 1000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Mc Donald's",
+    "cost_center": 2
+  },
+  {
+    "id": 26,
+    "amount": {
+      "value": 50000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Refueling",
+    "cost_center": 3
+  },
+  {
+    "id": 27,
+    "amount": {
+      "value": 20000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Birthday Present",
+    "cost_center": 25
+  },
+  {
+    "id": 28,
+    "amount": {
+      "value": 800000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Salary",
+    "cost_center": 1
+  },
+  {
+    "id": 29,
+    "amount": {
+      "value": 1000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Mc Donald's",
+    "cost_center": 2
+  },
+  {
+    "id": 30,
+    "amount": {
+      "value": 50000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Refueling",
+    "cost_center": 3
+  },
+  {
+    "id": 31,
+    "amount": {
+      "value": 20000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Birthday Present",
+    "cost_center": 25
+  },
+  {
+    "id": 32,
+    "amount": {
+      "value": 800000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Salary",
+    "cost_center": 1
+  },
+  {
+    "id": 33,
+    "amount": {
+      "value": 1000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Mc Donald's",
+    "cost_center": 2
+  },
+  {
+    "id": 34,
+    "amount": {
+      "value": 50000,
+      "currency": "EUR"
+    },
+    "direction": "OUTGOING",
+    "subject": "Refueling",
+    "cost_center": 3
+  },
+  {
+    "id": 35,
+    "amount": {
+      "value": 20000,
+      "currency": "EUR"
+    },
+    "direction": "INCOMING",
+    "subject": "Birthday Present",
+    "cost_center": 25
+  }
+]

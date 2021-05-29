@@ -1,0 +1,7 @@
+port: 4242
+defaultEncoderType: application/json
+dataSources:
+  jsonData:
+    type: json_file
+    config:
+      filename: data.json

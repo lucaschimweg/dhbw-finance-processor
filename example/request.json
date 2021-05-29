@@ -1,0 +1,38 @@
+{
+  "calculations": {
+    "max_outgoing": {
+      "type": "max",
+      "source": {
+        "type": "filter",
+        "conditions": [
+          {
+            "type": "equals",
+            "directionValue": "OUTGOING",
+            "field": "direction"
+          }
+        ],
+        "source": {
+          "type": "all_transactions",
+          "dataSourceName": "jsonData"
+        }
+      }
+    },
+    "max_incoming": {
+      "type": "max",
+      "source": {
+        "type": "filter",
+        "conditions": [
+          {
+            "type": "equals",
+            "directionValue": "INCOMING",
+            "field": "direction"
+          }
+        ],
+        "source": {
+          "type": "all_transactions",
+          "dataSourceName": "jsonData"
+        }
+      }
+    }
+  }
+}
