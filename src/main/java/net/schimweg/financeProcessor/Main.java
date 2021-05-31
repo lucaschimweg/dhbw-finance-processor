@@ -6,12 +6,10 @@ import net.schimweg.financeProcessor.execution.Executor;
 import net.schimweg.financeProcessor.http.Server;
 import net.schimweg.financeProcessor.model.DataContext;
 import net.schimweg.financeProcessor.plugin.LoadedPlugin;
-import net.schimweg.financeProcessor.plugin.PluginLoadException;
 import net.schimweg.financeProcessor.plugin.PluginLoader;
 import net.schimweg.financeProcessor.plugin.PluginManager;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 

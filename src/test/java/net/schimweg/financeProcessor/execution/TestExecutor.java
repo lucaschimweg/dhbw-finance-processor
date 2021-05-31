@@ -2,7 +2,10 @@ package net.schimweg.financeProcessor.execution;
 
 import net.schimweg.financeProcessor.ast.AstRoot;
 import net.schimweg.financeProcessor.ast.Node;
-import net.schimweg.financeProcessor.model.*;
+import net.schimweg.financeProcessor.model.Amount;
+import net.schimweg.financeProcessor.model.DataContext;
+import net.schimweg.financeProcessor.model.Transaction;
+import net.schimweg.financeProcessor.model.TransactionSet;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

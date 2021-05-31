@@ -1,9 +1,5 @@
 package net.schimweg.financeProcessor.model;
 
-import net.schimweg.financeProcessor.model.Amount;
-import net.schimweg.financeProcessor.model.ListTransactionSet;
-import net.schimweg.financeProcessor.model.Transaction;
-import net.schimweg.financeProcessor.model.TransactionDirection;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;

@@ -6,8 +6,8 @@ import com.sun.net.httpserver.HttpServer;
 import net.schimweg.financeProcessor.ast.AstRoot;
 import net.schimweg.financeProcessor.config.Config;
 import net.schimweg.financeProcessor.execution.*;
-import net.schimweg.financeProcessor.plugin.Parser;
 import net.schimweg.financeProcessor.plugin.Encoder;
+import net.schimweg.financeProcessor.plugin.Parser;
 import net.schimweg.financeProcessor.plugin.PluginManager;
 
 import java.io.ByteArrayOutputStream;

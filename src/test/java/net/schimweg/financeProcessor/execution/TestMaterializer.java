@@ -1,15 +1,11 @@
 package net.schimweg.financeProcessor.execution;
 
-import net.schimweg.financeProcessor.Common;
-import net.schimweg.financeProcessor.ast.AstRoot;
-import net.schimweg.financeProcessor.ast.Node;
 import net.schimweg.financeProcessor.model.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
