@@ -1,0 +1,2 @@
+# dhbw-finance-processor
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0988b9f7426049e0bf8787139c1cd462)](https://app.codacy.com/gh/lucaschimweg/dhbw-finance-processor?utm_source=github.com&utm_medium=referral&utm_content=lucaschimweg/dhbw-finance-processor&utm_campaign=Badge_Grade_Settings)
