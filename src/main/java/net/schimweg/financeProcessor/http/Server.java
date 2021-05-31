@@ -10,6 +10,7 @@ import net.schimweg.financeProcessor.plugin.Encoder;
 import net.schimweg.financeProcessor.plugin.Parser;
 import net.schimweg.financeProcessor.plugin.PluginManager;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -65,14 +66,6 @@ public class Server implements HttpHandler {
                 return;
             }
 
-            AstRoot root;
-            try {
-                root = parser.parseTree(exchange.getRequestBody());
-            } catch (Exception e) {
-                sendError("Error parsing AST", 400, exchange);
-                return;
-            }
-
             Encoder encoder;
             String accept = exchange.getRequestHeaders().getFirst("Accept");
             if (accept == null || accept.equals("*/*")) {
@@ -86,48 +79,65 @@ public class Server implements HttpHandler {
                 return;
             }
 
-            Result res;
-            try {
-                res = executor.execute(root);
-            } catch (EvaluationException e) {
-                e.printStackTrace();
-                sendError("Error during execution: " + e.getMessage(), 500, exchange);
-                return;
-            }
+            handleRequestWithTypes(exchange, parser, encoder);
 
-            if (res == null) {
-                sendError("Execution yielded no result", 500, exchange);
-                return;
-            }
-
-            MaterializedResult materializedResult;
-            try {
-                Materializer m = new Materializer();
-                materializedResult = m.materialize(res);
-            } catch (EvaluationException e) {
-                e.printStackTrace();
-                sendError("Error during result materialization: " + e.getMessage(), 500, exchange);
-                return;
-            }
-
-            ByteArrayOutputStream memoryStream = new ByteArrayOutputStream();
-            String encodedContentType;
-            try {
-                encodedContentType = encoder.encode(materializedResult, memoryStream);
-            } catch (Exception e) {
-                sendError("Error during response encoding", 500, exchange);
-                return;
-            }
-
-            exchange.getResponseHeaders().set("Content-Type", encodedContentType);
-            try {
-                exchange.sendResponseHeaders(200, 0);
-                exchange.getResponseBody().write(memoryStream.toByteArray());
-                exchange.getResponseBody().close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void handleRequestWithTypes(HttpExchange exchange, Parser parser, Encoder encoder) {
+        AstRoot root;
+        try {
+            root = parser.parseTree(exchange.getRequestBody());
+        } catch (Exception e) {
+            sendError("Error parsing AST", 400, exchange);
+            return;
+        }
+
+        Result res;
+        try {
+            res = executor.execute(root);
+        } catch (EvaluationException e) {
+            e.printStackTrace();
+            sendError("Error during execution: " + e.getMessage(), 500, exchange);
+            return;
+        }
+
+        if (res == null) {
+            sendError("Execution yielded no result", 500, exchange);
+            return;
+        }
+
+        MaterializedResult materializedResult;
+        try {
+            Materializer m = new Materializer();
+            materializedResult = m.materialize(res);
+        } catch (EvaluationException e) {
+            e.printStackTrace();
+            sendError("Error during result materialization: " + e.getMessage(), 500, exchange);
+            return;
+        }
+
+        ByteArrayOutputStream memoryStream = new ByteArrayOutputStream();
+        String encodedContentType;
+        try {
+            encodedContentType = encoder.encode(materializedResult, memoryStream);
+        } catch (Exception e) {
+            sendError("Error during response encoding", 500, exchange);
+            return;
+        }
+
+        sendResponseBody(exchange, memoryStream, encodedContentType);
+    }
+
+    private void sendResponseBody(HttpExchange exchange, ByteArrayOutputStream stream, String contentType) {
+        exchange.getResponseHeaders().set("Content-Type", contentType);
+        try {
+            exchange.sendResponseHeaders(200, 0);
+            exchange.getResponseBody().write(stream.toByteArray());
+            exchange.getResponseBody().close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
