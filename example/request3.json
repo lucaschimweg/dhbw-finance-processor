@@ -1,0 +1,8 @@
+{
+  "calculations": {
+    "all": {
+      "type": "all_transactions",
+      "dataSourceName": "jsonData"
+    }
+  }
+}

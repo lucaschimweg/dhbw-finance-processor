@@ -1,0 +1,19 @@
+{
+  "calculations": {
+    "overall_sum": {
+      "type": "sum",
+      "source": {
+        "type": "all_transactions",
+        "dataSourceName": "jsonData"
+      }
+    },
+    "overall_transaction_value": {
+      "type": "sum",
+      "respectDirection": false,
+      "source": {
+        "type": "all_transactions",
+        "dataSourceName": "jsonData"
+      }
+    }
+  }
+}

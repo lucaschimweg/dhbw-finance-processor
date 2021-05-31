@@ -1,0 +1,28 @@
+{
+  "calculations": {
+    "count": {
+      "type": "count",
+      "source": {
+        "type": "all_transactions",
+        "dataSourceName": "jsonData"
+      }
+    },
+    "count_incoming": {
+      "type": "count",
+      "source": {
+        "type": "filter",
+        "conditions": [
+          {
+            "directionValue": "INCOMING",
+            "field": "direction",
+            "type": "equals"
+          }
+        ],
+        "source": {
+          "type": "all_transactions",
+          "dataSourceName": "jsonData"
+        }
+      }
+    }
+  }
+}
