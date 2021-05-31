@@ -7,19 +7,14 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class TestAmount {
     @Test
-    void testAmountGetters() {
-        Amount a = new Amount(500, "EUR");
-
-        assertEquals(500, a.getValue());
-        assertEquals("EUR", a.getCurrency());
-    }
-
-    @Test
     void testAmountEquality() {
         Amount a = new Amount(500, "EUR");
         Amount b = new Amount(500, "EUR");
         Amount c = new Amount(500, "USD");
         Amount d = new Amount(1000, "EUR");
+
+        assertEquals(500, a.getValue());
+        assertEquals("EUR", a.getCurrency());
 
         assertEquals(a, b);
         assertNotEquals(a, c);

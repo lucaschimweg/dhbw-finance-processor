@@ -30,9 +30,4 @@ public class Common {
 
         return new DataContext(dataProviders);
     }
-
-    public static Transaction getEmptyTransaction() {
-        return new Transaction(0L, new Amount(0L, ""), "", 0, TransactionDirection.INCOMING);
-    }
-
 }

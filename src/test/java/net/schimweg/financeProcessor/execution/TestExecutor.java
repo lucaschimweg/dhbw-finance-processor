@@ -1,13 +1,11 @@
 package net.schimweg.financeProcessor.execution;
 
-import net.schimweg.financeProcessor.Common;
 import net.schimweg.financeProcessor.ast.AstRoot;
 import net.schimweg.financeProcessor.ast.Node;
 import net.schimweg.financeProcessor.model.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,17 +29,17 @@ public class TestExecutor {
         calculations.put("set", context -> {
             assertEquals(context, ctx);
             called[2] = true;
-            return new ListTransactionSet(List.of(Common.getEmptyTransaction())) {
+            return new TransactionSet() {
                 @Override
                 public boolean next() {
                     fail();         // Should not be called by executor
-                    return super.next();
+                    return false;
                 }
 
                 @Override
                 public Transaction current() {
                     fail();         // Should not be called by executor
-                    return super.current();
+                    return null;
                 }
             };
         });
