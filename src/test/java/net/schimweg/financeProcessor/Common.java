@@ -10,11 +10,10 @@ public class Common {
     public static final String MockDataContextName = "data";
 
     public static DataContext getMockDataContext(int nTransactions) {
-        var transaction = new Transaction(id, new Amount(1, "EUR"), "subject", 0, TransactionDirection.INCOMING);
         var transactionList = new ArrayList<Transaction>(nTransactions);
 
-        for (int i = 0; i < nTransactions; ++i) {
-           transactionList.add(transaction);
+        for (long i = 0; i < nTransactions; ++i) {
+           transactionList.add(new Transaction(i, new Amount(1, "EUR"), "subject", 0, TransactionDirection.INCOMING));
         }
 
         HashMap<String, DataProvider> dataProviders = new HashMap<>();
@@ -30,6 +29,10 @@ public class Common {
         dataProviders.put(MockDataContextName, () -> new ListTransactionSet(transactionList));
 
         return new DataContext(dataProviders);
+    }
+
+    public static Transaction getEmptyTransaction() {
+        return new Transaction(0L, new Amount(0L, ""), "", 0, TransactionDirection.INCOMING);
     }
 
 }

@@ -29,6 +29,13 @@ public final class Transaction implements MaterializedFinanceObject {
     }
 
     /**
+     * @return The Transaction's ID
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
      * @return The amount transferred
      */
     public Amount getAmount() {

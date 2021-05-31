@@ -18,11 +18,11 @@ public class MatcherTest {
         Matcher m = new Matcher(new Condition[] {c} );
 
         assertFalse(m.matches(new Transaction(
-                id, new Amount(499L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                0L, new Amount(499L, "EUR"), "", 0, TransactionDirection.INCOMING)));
         assertTrue(m.matches(new Transaction(
-                id, new Amount(500L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                1L, new Amount(500L, "EUR"), "", 0, TransactionDirection.INCOMING)));
         assertFalse(m.matches(new Transaction(
-                id, new Amount(501L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                2L, new Amount(501L, "EUR"), "", 0, TransactionDirection.INCOMING)));
     }
 
     @Test
@@ -35,9 +35,9 @@ public class MatcherTest {
 
 
         assertTrue(m.matches(new Transaction(
-                id, new Amount(500L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                0L, new Amount(500L, "EUR"), "", 0, TransactionDirection.INCOMING)));
         assertFalse(m.matches(new Transaction(
-                id, new Amount(500L, "USD"), "", 0, TransactionDirection.INCOMING)));
+                1L, new Amount(500L, "USD"), "", 0, TransactionDirection.INCOMING)));
     }
 
     @Test
@@ -50,9 +50,9 @@ public class MatcherTest {
 
 
         assertTrue(m.matches(new Transaction(
-                id, new Amount(500L, "EUR"), "My Subject", 0, TransactionDirection.INCOMING)));
+                0L, new Amount(500L, "EUR"), "My Subject", 0, TransactionDirection.INCOMING)));
         assertFalse(m.matches(new Transaction(
-                id, new Amount(500L, "EUR"), "Not my Subject", 0, TransactionDirection.INCOMING)));
+                1L, new Amount(500L, "EUR"), "Not my Subject", 0, TransactionDirection.INCOMING)));
     }
 
     @Test
@@ -65,9 +65,9 @@ public class MatcherTest {
 
 
         assertTrue(m.matches(new Transaction(
-                id, new Amount(500L, "EUR"), "", 500, TransactionDirection.INCOMING)));
+                0L, new Amount(500L, "EUR"), "", 500, TransactionDirection.INCOMING)));
         assertFalse(m.matches(new Transaction(
-                id, new Amount(500L, "EUR"), "", 501, TransactionDirection.INCOMING)));
+                1L, new Amount(500L, "EUR"), "", 501, TransactionDirection.INCOMING)));
     }
 
     @Test
@@ -80,9 +80,9 @@ public class MatcherTest {
 
 
         assertTrue(m.matches(new Transaction(
-                id, new Amount(500L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                0L, new Amount(500L, "EUR"), "", 0, TransactionDirection.INCOMING)));
         assertFalse(m.matches(new Transaction(
-                id, new Amount(500L, "EUR"), "", 0, TransactionDirection.OUTGOING)));
+                1L, new Amount(500L, "EUR"), "", 0, TransactionDirection.OUTGOING)));
     }
 
     @Test
@@ -94,11 +94,11 @@ public class MatcherTest {
         Matcher m = new Matcher(new Condition[] {c} );
 
         assertFalse(m.matches(new Transaction(
-                id, new Amount(499L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                0L, new Amount(499L, "EUR"), "", 0, TransactionDirection.INCOMING)));
         assertFalse(m.matches(new Transaction(
-                id, new Amount(500L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                1L, new Amount(500L, "EUR"), "", 0, TransactionDirection.INCOMING)));
         assertTrue(m.matches(new Transaction(
-                id, new Amount(501L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                2L, new Amount(501L, "EUR"), "", 0, TransactionDirection.INCOMING)));
     }
 
     @Test
@@ -110,11 +110,11 @@ public class MatcherTest {
         Matcher m = new Matcher(new Condition[] {c} );
 
         assertFalse(m.matches(new Transaction(
-                id, new Amount(499L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                0L, new Amount(499L, "EUR"), "", 0, TransactionDirection.INCOMING)));
         assertTrue(m.matches(new Transaction(
-                id, new Amount(500L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                1L, new Amount(500L, "EUR"), "", 0, TransactionDirection.INCOMING)));
         assertTrue(m.matches(new Transaction(
-                id, new Amount(501L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                2L, new Amount(501L, "EUR"), "", 0, TransactionDirection.INCOMING)));
     }
 
     @Test
@@ -126,11 +126,11 @@ public class MatcherTest {
         Matcher m = new Matcher(new Condition[] {c} );
 
         assertTrue(m.matches(new Transaction(
-                id, new Amount(499L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                0L, new Amount(499L, "EUR"), "", 0, TransactionDirection.INCOMING)));
         assertFalse(m.matches(new Transaction(
-                id, new Amount(500L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                1L, new Amount(500L, "EUR"), "", 0, TransactionDirection.INCOMING)));
         assertFalse(m.matches(new Transaction(
-                id, new Amount(501L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                2L, new Amount(501L, "EUR"), "", 0, TransactionDirection.INCOMING)));
     }
 
     @Test
@@ -142,11 +142,11 @@ public class MatcherTest {
         Matcher m = new Matcher(new Condition[] {c} );
 
         assertTrue(m.matches(new Transaction(
-                id, new Amount(499L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                0L, new Amount(499L, "EUR"), "", 0, TransactionDirection.INCOMING)));
         assertTrue(m.matches(new Transaction(
-                id, new Amount(500L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                1L, new Amount(500L, "EUR"), "", 0, TransactionDirection.INCOMING)));
         assertFalse(m.matches(new Transaction(
-                id, new Amount(501L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                2L, new Amount(501L, "EUR"), "", 0, TransactionDirection.INCOMING)));
     }
 
     @Test
@@ -190,7 +190,7 @@ public class MatcherTest {
         Matcher m = new Matcher(new Condition[] {c} );
 
         assertThrows(WrongTypeException.class, () -> m.matches(new Transaction(
-                id, new Amount(501L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                0L, new Amount(501L, "EUR"), "", 0, TransactionDirection.INCOMING)));
     }
 
     @Test
@@ -202,6 +202,6 @@ public class MatcherTest {
         Matcher m = new Matcher(new Condition[] {c} );
 
         assertThrows(WrongTypeException.class, () -> m.matches(new Transaction(
-                id, new Amount(501L, "EUR"), "", 0, TransactionDirection.INCOMING)));
+                0L, new Amount(501L, "EUR"), "", 0, TransactionDirection.INCOMING)));
     }
 }
